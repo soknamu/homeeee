@@ -4,9 +4,10 @@ from tensorflow.keras.layers import Dense
 
 #1. data
 
-x = np.array([range(10), range(21,31), range(51,61)])
+x = np.array([ Random.range(10), range(21,31), range(51,61)])
 np.random.shuffle(x)
 y = np.array([range(10), range(44,54), range(67,77)])
+
 #y= np.array([[1,2,3,4,5,6,7,8,9,10],[11,12,13,14,15,16,17,19,18,20],[21,22,23,24,25,26,27,28,29,30]])
 
 
@@ -16,7 +17,7 @@ y = np.array([range(10), range(44,54), range(67,77)])
 print(x)
 x = x.T
 y = y.T
-
+'''
 #2. modeling
 
 model = Sequential()
@@ -53,3 +54,6 @@ print('[9,31,61]의 값은 : ', result)
 #1/1 [==============================] - 0s 102ms/step
 # [9,31,61]의 값은 :  [[ 9.118988 53.974087 77.43406 ]]
 
+# 1/1 [==============================] - 0s 100ms/step
+# [9,31,61]의 값은 :  [[ 8.772327 55.46763  79.67876 ]]
+'''
