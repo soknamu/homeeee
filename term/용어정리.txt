@@ -1,5 +1,5 @@
-2023/03/26
-
+2023/03/06
+선생님 이메일 주소 : kingkeras@naver.com
 1)path : 장소 불러오기
 ① .(점) : 현재파일
 ② / : 이전파일
@@ -20,3 +20,32 @@
             그외는 똑같음
 13)to_ 파일저장
 14)def :함수, return : 함수의 결과값, sqrt : 루트
+
+2023/03/07
+15)validation : train에서 검증값을 구하기 위해 분리시켜서 정확성을 올려준다.
+
+
+2023/03/08
+
+###############데이터 분리 표##################
+                x값        y값
+train            o          o
+test             o          o
+validation      o          o
+predict         o          x
+##############################################
+16) hist :모델fit에서 loss값과 val_loss에서 값을 반환함(return) 그것을 반환하는 것을 hist라고함.
+17)plt.title('') 표제목
+plt.xlabel('')  x축 글씨
+plt.ylabel('') y축 글씨
+plt.legend() 범례 표시 : 오른쪽 위에 뜨는 조그만 상자. 
+plt.grid 그래프에 오목판처럼 축이 생김
+18)train_test_split :트레인과 테스트를 분리시키는 함수.
+
+과제) 클래스와 함수의 차이를 비교해보기 그리고 느낀점. 이면지 반페이지
+최적의 loss 는 최적의 weight(웨이트)
+
+19)EarlyStopping 앞글자가 대문자면 클래스, 소문자면 함수. (ex)train_test_split는 함수.
+20)naming rule : C: 뜻이틀릴때마다 언더바를 사용
+                java:새로운 뜻이 있을 때마다 대문자를 사용 
+                -^-^- 그래서 이렇게 낙타등처럼 생긴게 카멜케이스(camel case)
