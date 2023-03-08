@@ -51,3 +51,4 @@ plt.grid 그래프에 오목판처럼 축이 생김
 20)naming rule : C: 뜻이틀릴때마다 언더바를 사용
                 java:새로운 뜻이 있을 때마다 대문자를 사용 
                 -^-^- 그래서 이렇게 낙타등처럼 생긴게 카멜케이스(camel case)
+https://snowdeer.github.io/machine-learning/2018/01/11/keras-use-history-function/
