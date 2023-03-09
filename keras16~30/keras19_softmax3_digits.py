@@ -26,10 +26,16 @@ print('y의 라벨값 : ', np.unique(y)) #[0 1 2 3 4 5 6 7 8 9] y의 라벨의 �
 
 ##########################이 지점에서 원핫인코딩을 한다###########################
 
+#1.텐서플로우 방법
 from tensorflow.keras.utils import to_categorical #tensorflow 빼도 가능.
 y = to_categorical(y)
-print(y.shape) #(178, 10)
+print(y.shape) #(150, 3)
+#2. sklearn 방법
 
+# 3.판다스 겟더미
+# import pandas as pd
+# y=pd.get_dummies(y)
+# print(y.shape)
 #판다스에 겟더미, sklearn 원핫인코더??
 ################################################################################
 
