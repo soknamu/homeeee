@@ -123,3 +123,4 @@ model.add(Dense(150, input_dim=9,activation= 'relu'))
 # model.add(Dense(15))
 # model.add(Dense(1,activation= 'linear'))
 # random_state= 942 ,epochs = 1500, batch_size =22, patience =150
+'''
