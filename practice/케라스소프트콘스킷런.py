@@ -30,14 +30,22 @@ y = datasets['target']
 # y = to_categorical(y)
 # print(y.shape) #(178, 3)
 
-from sklearn.preprocessing import OneHotEncoder, LabelEncoder
+f#1. tensorflow 
+# from tensorflow.keras.utils import to_categorical #tensorflow 빼도 가능.
+# y = to_categorical(y)
+# print(y.shape) #(178, 3)
 
-ohe = OneHotEncoder()
-le = LabelEncoder()
+#2. sklearn
+# from sklearn.preprocessing import OneHotEncoder
+# ohe = OneHotEncoder()
+# y = y.reshape(-1,1)
+# y = ohe.fit_transform(y).toarray()
+# print(y.shape)
 
-y = y.reshape(-1,1)
-ohehot = ohe.fit_transform(y)
-
+# 3.pandas get_dummies
+# import pandas as pd
+# y=pd.get_dummies(y)
+# print(y.shape)
 print(y.shape)
 #2차원 데이터로 변환.
 
