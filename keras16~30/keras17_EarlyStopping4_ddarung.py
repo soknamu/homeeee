@@ -106,3 +106,20 @@ submission.to_csv(path_save + 'submit_0308_1834 .csv')
 # loss :  1845.388916015625
 # r2 score : 0.5918090421171036
 # RMSE :  42.95799018138638 epochs = 25000 batch_size =22
+
+# loss :  1824.31787109375
+# r2 score : 0.5971425374229689
+# RMSE :  42.71203579128447
+'''
+model.add(Dense(150, input_dim=9,activation= 'relu'))
+# model.add(Dense(135))
+# model.add(Dense(120,activation= 'relu'))
+# model.add(Dense(105))
+# model.add(Dense(90,activation= 'relu'))
+# model.add(Dense(75))
+# model.add(Dense(60,activation= 'relu'))
+# model.add(Dense(45))
+# model.add(Dense(30,activation= 'relu'))
+# model.add(Dense(15))
+# model.add(Dense(1,activation= 'linear'))
+# random_state= 942 ,epochs = 1500, batch_size =22, patience =150
