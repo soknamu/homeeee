@@ -24,10 +24,16 @@ y = datasets['target']
 
 ##########################이 지점에서 원핫인코딩을 한다###########################
 
+#1.텐서플로우 방법
 from tensorflow.keras.utils import to_categorical #tensorflow 빼도 가능.
 y = to_categorical(y)
 print(y.shape) #(150, 3)
+#2. sklearn 방법
 
+# 3.판다스 겟더미
+# import pandas as pd
+# y=pd.get_dummies(y)
+# print(y.shape)
 ## y를 (150, ) -> (150,3)
 #판다스에 겟더미, sklearn 원핫인코더??
 ################################################################################
