@@ -30,7 +30,13 @@ print('y의 라벨값 : ', np.unique(y)) #[0 1 2 3 4 5 6 7 8 9] y의 라벨의 �
 from tensorflow.keras.utils import to_categorical #tensorflow 빼도 가능.
 y = to_categorical(y)
 print(y.shape) #(150, 3)
+
 #2. sklearn 방법
+from sklearn.preprocessing import OneHotEncoder
+ohe = OneHotEncoder()
+y = y.reshape(-1,1)
+y = ohe.fit_transform(y).toarray()
+print(y.shape)
 
 # 3.판다스 겟더미
 # import pandas as pd
