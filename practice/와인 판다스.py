@@ -26,11 +26,22 @@ print('y의 라벨값 : ', np.unique(y)) #[0 1 2] y의 라벨의 종류가 3가�
 
 ##########################이 지점에서 원핫인코딩을 한다###########################
 
-import pandas as pd
+#1. tensorflow 
+# from tensorflow.keras.utils import to_categorical #tensorflow 빼도 가능.
+# y = to_categorical(y)
+# print(y.shape) #(178, 3)
 
-y=pd.get_dummies(y)
-print(y.shape)
+#2. sklearn
+# from sklearn.preprocessing import OneHotEncoder
+# ohe = OneHotEncoder()
+# y = y.reshape(-1,1)
+# y = ohe.fit_transform(y).toarray()
+# print(y.shape)
 
+# 3.pandas get_dummies
+# import pandas as pd
+# y=pd.get_dummies(y)
+# print(y.shape)
 #판다스에 겟더미, sklearn 원핫인코더??
 ################################################################################
 '''
