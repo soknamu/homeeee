@@ -1,10 +1,10 @@
+0309
+
+hist 용어정리
+history = 훈련하는 동안 발생하는 정보를 담고있다(학습이력 확인 코드)
+
 Keras에서는 모델 학습을 위해 fit() 함수를 사용합니다. 
-
 이 때, 리턴값으로 학습 이력(History) 정보를 리턴합니다. 여기에는 다음과 같은 항목들이 포함되어 있습니다.
-
-history = 훈련하는 동안 발생하는 정보를 담고있다
-
-
 
 아래 항목들은 매 epoch 마다의 값들이 저장되어 있습니다.
 
@@ -16,26 +16,13 @@ history = 훈련하는 동안 발생하는 정보를 담고있다
 
 • val_acc : 검증 정확도
 
-hist = 
-
--> 학습이력 확인 코드
-
 What is a good number of epochs?
 
-The right number of epochs depends on the inherent perplexity (or complexity) of your dataset. A good rule of thumb is to start with a value that is 3 times the number of columns in your data. If you find that the model is still improving after all epochs complete, try again with a higher value.
+The right number of epochs depends on the inherent perplexity (or complexity) of your dataset. 
+A good rule of thumb is to start with a value that is 3 times the number of columns in your data. 
+If you find that the model is still improving after all epochs complete, try again with a higher value.
 
 에포크는 세트의 복잡함에 달라진다.
-일반적으로 데이터의 열 수에 3배인 값으로 시작하는 것이 좋습니다. 모든 에포크가 완료된 후에도 모형이 계속 개선되고 있으면 더 높은 값을 사용하여 다시 시도하십시오.
+일반적으로 데이터의 열 수에 3배인 값으로 시작하는 것이 좋습니다. 
+모든 에포크가 완료된 후에도 모형이 계속 개선되고 있으면 더 높은 값을 사용하여 다시 시도하십시오.
 
-How many epochs are needed for early stopping?
-
-This strategy of stopping early based on the validation set performance is called Early Stopping. This is explained with the below diagram. The validation set accuracy, however, saturates between 8 to 10 epochs. This is where the model can be stopped training.
-
-그러나 검증세트의 정확성은 8-10 에포크에서 포화한다.
-
-
-Patience is an important parameter of the Early Stopping Callback.
-
-If the patience parameter is set to X number of epochs or iterations, then the training will terminate only if there is no improvement in the monitor performance measure for X epochs or iterations in a row.
-
-For further understanding, please refer to the explanation of the code
