@@ -52,3 +52,19 @@ plt.grid 그래프에 오목판처럼 축이 생김
                 java:새로운 뜻이 있을 때마다 대문자를 사용 
                 -^-^- 그래서 이렇게 낙타등처럼 생긴게 카멜케이스(camel case)
 https://snowdeer.github.io/machine-learning/2018/01/11/keras-use-history-function/
+
+# pip uninstall scikit_learn   -> 사이킷런 삭제
+# pip install scikit-learn==1.2.0 -> 사이킷런 설치
+# cmd 에서
+
+3월10일 
+스케일러
+가장 중요한거 : x_train만 정규화를 시킨다.
+순서 첫번째 트레인과 테스트를 먼저 나눈다.
+
+두번째 비율에 맞춰서 나머지(test, predict) 변환
+train 과 test가 완벽하게 겹치면 오히려 안좋음.
+
+x_test 범위가 어긋나면 오히려 좋다.
+
+결론: 스케일은  train과 테스트를 분리하기후에 해야됨.
