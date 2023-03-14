@@ -80,26 +80,19 @@ hist = model.fit(x_train, y_train, epochs =1550,
                  )
 
 #4. 평가, 예측
-results = model.predict(x_test,y_test)
+results = model.evaluate(x_test,y_test)
 print('results :', results)
 
-y_predict = model.predict(x_test)
+y_predict = np.round(model.predict(x_test))
 
-#print(y_predict.shape)
-y_test_acc = np.argmax(y_test, axis = 1) #각행에 있는 열(1)끼리 비교(ytest열끼리비교)
-y_predict = np.argmax(y_predict, axis = 1) #-1해도 상관없음.
-
-#print(y_predict.shape)
-#print(y_test_acc.shape)
-
-acc = accuracy_score(y_test_acc, y_predict)
+acc = accuracy_score(y_test, y_predict)
 print('accuary_score : ', acc)
 
 #파일저장.
 y_submit = np.round(model.predict(test_csv))
 submission = pd.read_csv(path + 'sample_submission.csv', index_col = 0)
 submission['Outcome'] = y_submit
-submission.to_csv(path_save + 'submit_acc_0313_1046 .csv')
+submission.to_csv(path_save + 'submit_acc_0314_0945 .csv')
 
 from matplotlib import pyplot as plt
 plt.subplot(1,2,1)
