@@ -7,7 +7,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler,MaxAbsScaler
 from sklearn.preprocessing import StandardScaler,RobustScaler
 from sklearn.preprocessing import OneHotEncoder
-from tensorflow.python.keras.callbacks import EarlyStopping
+from tensorflow.python.keras.callbacks import EarlyStopping,ModelCheckpoint
+from sklearn.preprocessing import LabelEncoder
 #1. 데이터
 
 path = './_data/dacon_wine/'
@@ -18,13 +19,17 @@ test_csv = pd.read_csv(path + 'test.csv', index_col= 0)
 
 #print(train_csv.shape) #(5497, 13)
 #print(test_csv.shape) #(1000, 12)
+from sklearn.preprocessing import LabelEncoder
+enc = LabelEncoder()
+enc.fit(train_csv['type'])
+train_csv['type'] = enc.transform(train_csv['type'])
+test_csv['type'] = enc.transform(test_csv['type'])
 
+#print(train_csv.isnull().sum()) #결측치 x
 
-print(train_csv.isnull().sum()) #결측치 x
-
-x = train_csv.drop(['quality','type'], axis= 1)
+x = train_csv.drop(['quality'], axis= 1)
 y = train_csv['quality']
-test_csv = test_csv.drop(['type'],axis = 1)
+#test_csv = test_csv.drop(['type'],axis = 1)
 # print(x.shape) #(5497, 11)
 # print(y.shape) #(5497,)
 
@@ -38,7 +43,7 @@ y = y.reshape(-1,1)
 y = ohe.fit_transform(y).toarray()
 
 x_train, x_test, y_train, y_test = train_test_split(
-    x,y, shuffle= True, random_state= 1742, train_size= 0.7, stratify=y)
+    x,y, shuffle= True, random_state= 942, train_size= 0.7, stratify=y)
 
 scaler = MinMaxScaler()
 x_train = scaler.fit_transform(x_train)
@@ -47,16 +52,15 @@ test_csv = scaler.transform(test_csv)
 
 #2.모델구성
 
-input1 = Input(shape = (11,))
+input1 = Input(shape = (12,))
 dense1 = Dense(128)(input1)
 drop1 = Dropout(0.25)(dense1)
 dense2 = Dense(64, activation= LeakyReLU(0.85))(drop1)
-dense3 = Dense(32)(dense2)
-drop2 = Dropout(0.25)(dense3)
-dense4 = Dense(64, activation= LeakyReLU(0.85))(drop2)
+drop2 = Dropout(0.25)(dense2)
+dense4 = Dense(32, activation= LeakyReLU(0.85))(drop2)
 drop3 = Dropout(0.25)(dense4)
-dense5 = Dense(64, activation= LeakyReLU(0.85))(drop3)
-dense6 = Dense(64, activation= LeakyReLU(0.85))(dense5)
+dense5 = Dense(16, activation= LeakyReLU(0.85))(drop3)
+dense6 = Dense(8, activation= LeakyReLU(0.85))(dense5)
 drop4 = Dropout(0.25)(dense5)
 output1 = Dense(7, activation= 'softmax')(drop4)
 model = Model(inputs = input1, outputs = output1)
@@ -67,11 +71,26 @@ es = EarlyStopping(monitor= 'val_acc', patience= 300, mode = 'max',
                    restore_best_weights= True,
                    verbose= 1)
 
+
+
 model.compile(loss = 'categorical_crossentropy',
               optimizer = 'adam',
               metrics = ['acc'])
 
-model.fit(x_train, y_train, epochs = 5000, 
+import datetime
+date = datetime.datetime.now()
+print(date)
+date = date.strftime('%m%d_%H%M')
+print(date)
+
+filepath = './_save/dacon_wine/'
+filename = '{epoch:04d}-{val_loss:.4f}.hdf5'
+
+mcp = ModelCheckpoint(monitor = 'val_loss', mode = 'auto',
+                      verbose = 1, save_best_only= True,
+            filepath = "".join([filepath, 'k27_', date, '_', filename]))
+
+hist = model.fit(x_train, y_train, epochs = 5000, 
           batch_size = 55, verbose = 1,
           validation_split= 0.2,
           callbacks = [es])
@@ -91,16 +110,22 @@ y_predict = np.argmax(y_predict, axis =-1)
 acc = accuracy_score(y_test_acc, y_predict)
 print('Accuary score : ', acc)
 
-
 #파일저장
 
 y_submit = model.predict(test_csv)
-
 y_submit = np.argmax(y_submit, axis = 1)
-
 submission = pd.read_csv(path + 'submission.csv', index_col = 0)
+
 y_submit += 3
 submission['quality'] = y_submit
-print(np.unique(y_submit))
-submission.to_csv(path_save + 'submit_0314_1744.csv')
+# print(np.unique(y_submit))
+submission.to_csv(path_save + 'submit_0314_1833.csv')
 
+from matplotlib import pyplot as plt
+plt.subplot(1,2,1)
+plt.plot(hist.history['val_loss'])
+plt.title('categorical_crossentropy')
+plt.subplot(1,2,2)
+plt.plot(hist.history['val_acc'])
+plt.title('val_acc')
+plt.show()
